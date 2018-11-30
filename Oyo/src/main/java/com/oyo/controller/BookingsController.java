@@ -14,43 +14,45 @@ import org.springframework.web.bind.annotation.RestController;
 import com.oyo.dto.BookingsDTO;
 import com.oyo.service.BookingsService;
 
-
 @RestController
-@RequestMapping(name = "/booking")
-public class BookingController {
+@RequestMapping("/booking")
+public class BookingsController {
 
 	@Autowired
-	private BookingsService bookingService;
+	private BookingsService bookingsService;
 
 	/**
 	 * get list of All BookingDto
+	 * 
 	 * @return list of BookingDto
 	 */
-	
 	@GetMapping
-	public List<BookingsDTO> getAllBooking() {
-		return bookingService.getAllBookings();
+	public List<BookingsDTO> getAllBookings() {
+		return bookingsService.getAllBookings();
 	}
-	
+
 	/**
-	 * get bookingDto by id
+	 * get bookDto by id
 	 * @param id
-	 * @return BookingDto 
-	 * @throws Exception if booking is not available on given id
+	 * @return
+	 * @throws Exception
 	 */
 	@GetMapping("/{id}")
 	public BookingsDTO getBookingById(@PathVariable(name = "id") int id) throws Exception {
-		return bookingService.getBookingDtoById(id);
+		return bookingsService.getBookingDtoById(id);
 	}
 
 	/**
 	 * create or update booking
+	 * 
 	 * @param bookingDTO
 	 * @return
+	 * @throws Exception
+	 *             if booking is not found on given id
 	 */
 	@PostMapping
-	public BookingsDTO createOrUpdateBooking(@RequestBody BookingsDTO bookingDTO) {
-		return bookingDTO;
+	public BookingsDTO createOrUpdateBooking(@RequestBody BookingsDTO bookingsDTO) throws Exception {
+		return bookingsService.createOrUpdateBooking(bookingsDTO);
 	}
 
 	/**
@@ -58,16 +60,16 @@ public class BookingController {
 	 */
 	@DeleteMapping
 	public void deleteAllBooking() {
-		bookingService.deleteAllBooking();
+		bookingsService.deleteAllBooking();
 	}
 
 	/**
-	 * 
+	 *
 	 * @param id
 	 * @throws Exception
 	 */
 	@DeleteMapping("/{id}")
 	public void deleteBookingById(@PathVariable(name = "id") int id) throws Exception {
-		bookingService.deleteBookingById(id);
+		bookingsService.deleteBookingById(id);
 	}
 }
