@@ -17,7 +17,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.oyo.dto.BookingsDTO;
+import com.oyo.dto.BookingDTO;
 import com.oyo.dto.RoomDTO;
 import com.oyo.enums.PaymentStatus;
 
@@ -58,7 +58,7 @@ public class Booking {
 
 	}
 
-	public Booking(BookingsDTO bookingsDTO) {
+	public Booking(BookingDTO bookingsDTO) {
 
 		this.id = bookingsDTO.getId();
 		this.bookingDate = new Date();

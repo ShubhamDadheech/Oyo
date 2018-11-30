@@ -11,16 +11,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.oyo.dto.BookingsDTO;
-import com.oyo.service.BookingsService;
+import com.oyo.dto.BookingDTO;
+import com.oyo.service.BookingService;
 
 
 @RestController
-@RequestMapping(name = "/booking")
+@RequestMapping("/booking")
 public class BookingController {
 
 	@Autowired
-	private BookingsService bookingService;
+	private BookingService bookingService;
 
 	/**
 	 * get list of All BookingDto
@@ -28,7 +28,7 @@ public class BookingController {
 	 */
 	
 	@GetMapping
-	public List<BookingsDTO> getAllBooking() {
+	public List<BookingDTO> getAllBooking() {
 		return bookingService.getAllBookings();
 	}
 	
@@ -39,7 +39,7 @@ public class BookingController {
 	 * @throws Exception if booking is not available on given id
 	 */
 	@GetMapping("/{id}")
-	public BookingsDTO getBookingById(@PathVariable(name = "id") int id) throws Exception {
+	public BookingDTO getBookingById(@PathVariable(name = "id") int id) throws Exception {
 		return bookingService.getBookingDtoById(id);
 	}
 
@@ -47,10 +47,11 @@ public class BookingController {
 	 * create or update booking
 	 * @param bookingDTO
 	 * @return
+	 * @throws Exception 
 	 */
 	@PostMapping
-	public BookingsDTO createOrUpdateBooking(@RequestBody BookingsDTO bookingDTO) {
-		return bookingDTO;
+	public BookingDTO createOrUpdateBooking(@RequestBody BookingDTO bookingDTO) throws Exception {
+		return bookingService.createOrUpdateBooking(bookingDTO);
 	}
 
 	/**
@@ -70,4 +71,11 @@ public class BookingController {
 	public void deleteBookingById(@PathVariable(name = "id") int id) throws Exception {
 		bookingService.deleteBookingById(id);
 	}
+	
+	@GetMapping("/room/{id}")
+	public List<BookingDTO> getAllBookingsByRoomId (@PathVariable(name = "id") int id) throws Exception{
+		return bookingService.getAllBookingsByRoomId(id);
+		
+	}
+	
 }

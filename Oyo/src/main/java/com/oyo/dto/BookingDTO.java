@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import com.oyo.entity.Booking;
 import com.oyo.enums.PaymentStatus;
 
-public class BookingsDTO {
+public class BookingDTO {
 
 	private int id;
 	private Date bookingDate;
@@ -17,11 +17,11 @@ public class BookingsDTO {
 	private int numberOfPerson;
 	private List<RoomDTO> roomsDto;
 
-	public BookingsDTO() {
+	public BookingDTO() {
 
 	}
 
-	public BookingsDTO(Booking bookings) {
+	public BookingDTO(Booking bookings) {
 
 		this.id = bookings.getId();
 
