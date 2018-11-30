@@ -6,6 +6,4 @@ import com.oyo.entity.Booking;
 
 public interface BookingRepository extends JpaRepository<Booking, Integer> {
 
-	
-	
 }
