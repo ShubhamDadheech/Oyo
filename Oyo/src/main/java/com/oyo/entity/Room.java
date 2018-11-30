@@ -78,7 +78,7 @@ public class Room {
 			this.airCondition = roomDTO2.isAirCondition();
 			this.roomCost = roomDTO2.getRoomCost();
 
-			this.hotel = new Hotel(roomDTO2.getHotel());
+			this.hotel = new Hotel(roomDTO2.getHotel(),true);
 
 		}
 
@@ -140,4 +140,44 @@ public class Room {
 		this.hotel = hotel;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (airCondition ? 1231 : 1237);
+		result = prime * result + id;
+		result = prime * result + roomCost;
+		result = prime * result + ((roomName == null) ? 0 : roomName.hashCode());
+		result = prime * result + ((roomStatus == null) ? 0 : roomStatus.hashCode());
+		result = prime * result + ((roomType == null) ? 0 : roomType.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Room other = (Room) obj;
+		if (airCondition != other.airCondition)
+			return false;
+		if (id != other.id)
+			return false;
+		if (roomCost != other.roomCost)
+			return false;
+		if (roomName != other.roomName)
+			return false;
+		if (roomStatus != other.roomStatus)
+			return false;
+		if (roomType != other.roomType)
+			return false;
+		return true;
+	}
+
+	
+	
+	
 }

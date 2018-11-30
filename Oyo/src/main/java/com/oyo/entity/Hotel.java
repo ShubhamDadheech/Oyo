@@ -16,6 +16,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.oyo.dto.HotelDTO;
+import com.oyo.dto.RoomDTO;
 
 @Entity
 @Table(name = "hotel")
@@ -77,6 +78,11 @@ public class Hotel {
 		}
 	}
 
+	public Hotel(HotelDTO hotelDTO,boolean showHotel) {
+
+	}
+
+
 	public int getId() {
 		return id;
 	}
@@ -125,4 +131,40 @@ public class Hotel {
 		this.rooms = rooms;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((hotelName == null) ? 0 : hotelName.hashCode());
+		result = prime * result + id;
+		result = prime * result + ((rating == null) ? 0 : rating.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Hotel other = (Hotel) obj;
+		if (hotelName == null) {
+			if (other.hotelName != null)
+				return false;
+		} else if (!hotelName.equals(other.hotelName))
+			return false;
+		if (id != other.id)
+			return false;
+		if (rating == null) {
+			if (other.rating != null)
+				return false;
+		} else if (!rating.equals(other.rating))
+			return false;
+		return true;
+	}
+
+	
+	
 }
